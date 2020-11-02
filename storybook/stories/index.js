@@ -10,10 +10,14 @@ import Message from './Message';
 import UiKitMessage from './UiKitMessage';
 import UiKitModal from './UiKitModal';
 import Markdown from './Markdown';
+import './HeaderButtons';
+import './UnreadBadge';
+import '../../app/views/ThreadMessagesView/Item.stories.js';
 import Avatar from './Avatar';
 // import RoomViewHeader from './RoomViewHeader';
 
 import MessageContext from '../../app/containers/message/Context';
+import { themes } from '../../app/constants/colors';
 
 // MessageProvider
 const baseUrl = 'https://open.rocket.chat';
@@ -33,6 +37,7 @@ const reducers = combineReducers({
 			username: 'diego.mello'
 		}
 	}),
+	share: () => ({ settings: {} }),
 	meteor: () => ({ connected: true }),
 	activeUsers: () => ({ abc: { status: 'online', statusText: 'dog' } })
 });
@@ -50,7 +55,8 @@ const messageDecorator = story => (
 			replyBroadcast: () => {},
 			onReactionPress: () => {},
 			onDiscussionPress: () => {},
-			onReactionLongPress: () => {}
+			onReactionLongPress: () => {},
+			getBadgeColor: () => themes.light.tunreadBackground
 		}}
 	>
 		{story()}
@@ -61,6 +67,7 @@ storiesOf('RoomItem', module)
 	.addDecorator(story => <Provider store={store}>{story()}</Provider>)
 	.add('list roomitem', () => <RoomItem theme={theme} />);
 storiesOf('Message', module)
+	.addDecorator(story => <Provider store={store}>{story()}</Provider>)
 	.addDecorator(messageDecorator)
 	.add('list message', () => <Message theme={theme} />);
 

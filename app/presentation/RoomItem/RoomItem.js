@@ -39,6 +39,9 @@ const RoomItem = ({
 	unread,
 	userMentions,
 	groupMentions,
+	tunread,
+	tunreadUser,
+	tunreadGroup,
 	roomUpdatedAt,
 	testID,
 	swipeEnabled,
@@ -114,7 +117,9 @@ const RoomItem = ({
 								unread={unread}
 								userMentions={userMentions}
 								groupMentions={groupMentions}
-								theme={theme}
+								tunread={tunread}
+								tunreadUser={tunreadUser}
+								tunreadGroup={tunreadGroup}
 							/>
 						</View>
 					</>
@@ -138,7 +143,9 @@ const RoomItem = ({
 							unread={unread}
 							userMentions={userMentions}
 							groupMentions={groupMentions}
-							theme={theme}
+							tunread={tunread}
+							tunreadUser={tunreadUser}
+							tunreadGroup={tunreadGroup}
 						/>
 					</View>
 				)
@@ -176,6 +183,9 @@ RoomItem.propTypes = {
 	unread: PropTypes.number,
 	userMentions: PropTypes.number,
 	groupMentions: PropTypes.number,
+	tunread: PropTypes.array,
+	tunreadUser: PropTypes.array,
+	tunreadGroup: PropTypes.array,
 	roomUpdatedAt: PropTypes.instanceOf(Date),
 	swipeEnabled: PropTypes.bool,
 	toggleFav: PropTypes.func,
